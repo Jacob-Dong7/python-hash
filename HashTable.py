@@ -13,22 +13,6 @@ class HashTable:
         else:
             return index
         
-
-    def check_table(self):
-        if self.table is None:
-            return False
-        else:
-            return True
-        
-    def table_empty():
-        print("The Hash Table is Empty")
-
-    def check_index(self, index):
-        if index < 0 or index >= len(self.table):
-            return False
-        else:
-            return True
-        
     def rehash(self):
         self.size = self.size * 2
         old_table = self.table
@@ -40,7 +24,6 @@ class HashTable:
                 key = item[0]
                 value = item[1]
                 self.insert(key, value)
-
         return
         
     def insert(self, key, value):
@@ -55,37 +38,41 @@ class HashTable:
             if item is None:
                 self.table[index] = (key, value)
                 self.count += 1
-                print("Key and Value successfully added")
+                print(f"{key} and {value} successfully added")
                 return
             elif item[0] == key:
                 item[1] = value
+                print(f"{key} already exist, {value} successfully added")
                 return
             else:
                 index = (index + 1) % self.size
+                print(f"Index already used, {index} incremented")
 
     def search(self, search_key):
         for item in self.table:
             if item is None:
                 continue
             key, value = item
-            if search_key is key:
-                print(value)
+            if search_key == key:
+                print(f"{value} found")
                 return
         print("The key is not in the table")
         return
     
     def delete(self, delete_key):
         if self.table is None:
+            print("Table is empty")
             return
         
         index = self.calc_hash(delete_key)
         if index < 0 or index >= len(self.table):
+            print("Index out of bound")
             return
         
         if self.table[index][0] == delete_key:
             self.table[index] = None
             self.count -= 1
-            print("Successfully deleted")
+            print(f"{delete_key} successfully deleted")
         return
 
     def print_all(self):
