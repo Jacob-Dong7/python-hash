@@ -51,16 +51,18 @@ class HashTable:
             return
         
         index = self.calc_hash(search_key)
+        probs = 0
         
-        while True:
+        while True and probs < len(self.table):
             if self.table[index] is None:
                 print("Not found")
                 return
             elif self.table[index][0] == search_key:
-                print("Found")
+                print(f"Found {self.table[index][1]}")
                 return
             else:
-                index = (index + 1) % self.size #probe
+                index = (index + 1) % len(self.table) #probe
+                probs += 1
 
             
         
