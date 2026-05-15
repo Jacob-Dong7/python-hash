@@ -38,26 +38,32 @@ class HashTable:
             if item is None:
                 self.table[index] = (key, value)
                 self.count += 1
-                print(f"{key} and {value} successfully added")
                 return
             elif item[0] == key:
-                item[1] = value
-                print(f"{key} already exist, {value} successfully added")
+                item = (key, value)
                 return
             else:
                 index = (index + 1) % self.size
-                print(f"Index already used, {index} incremented")
 
     def search(self, search_key):
-        for item in self.table:
-            if item is None:
-                continue
-            key, value = item
-            if search_key == key:
-                print(f"{value} found")
+        if self.table is None:
+            print("Table is empty")
+            return
+        
+        index = self.calc_hash(search_key)
+        
+        while True:
+            if self.table[index] is None:
+                print("Not found")
                 return
-        print("The key is not in the table")
-        return
+            elif self.table[index][0] == search_key:
+                print("Found")
+                return
+            else:
+                index = (index + 1) % self.size #probe
+
+            
+        
     
     def delete(self, delete_key):
         if self.table is None:
