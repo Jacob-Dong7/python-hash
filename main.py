@@ -3,7 +3,7 @@ def main():
     hashTable = HashTable()
     hashTable.insert("Sydney", "1")
     hashTable.insert("Melbourne", "2")
-
+    hashTable.print_all()
     return
 
 

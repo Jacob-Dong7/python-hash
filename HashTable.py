@@ -7,8 +7,8 @@ class HashTable:
     
     def calc_hash(self, key):
         total = sum(ord(char) for char in key)
-        index = total / self.size 
-        if index < 0 or index > self.size():
+        index = total % self.size 
+        if index < 0 or index > self.size:
             return False
         else:
             return index
@@ -27,9 +27,12 @@ class HashTable:
                 print("temp")
 
 
+
+
     def print_all(self):
-        for key, value in self.list:
-            if key and value is not None:
+        for item in self.table:
+            if item is not None:
+                key, value = item
                 print(f"{key} and {value}")
 
     
