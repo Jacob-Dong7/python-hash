@@ -4,6 +4,7 @@ def main():
     hashTable.insert("Sydney", "1")
     hashTable.insert("Melbourne", "2")
     hashTable.print_all()
+    hashTable.search("Melbourne")
     return
 
 

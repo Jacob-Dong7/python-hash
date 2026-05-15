@@ -26,7 +26,16 @@ class HashTable:
             else:
                 print("temp")
 
-
+    def search(self, search_key):
+        for item in self.table:
+            if item is None:
+                continue
+            key, value = item
+            if search_key is key:
+                print(value)
+                return
+        print("The key is not in the table")
+        return
 
 
     def print_all(self):
