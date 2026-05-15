@@ -5,6 +5,8 @@ def main():
     hashTable.insert("Melbourne", "2")
     hashTable.print_all()
     hashTable.search("Melbourne")
+    hashTable.delete("Melbourne")
+    hashTable.print_all()
     return
 
 

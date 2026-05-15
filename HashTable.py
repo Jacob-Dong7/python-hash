@@ -23,6 +23,7 @@ class HashTable:
                 return
             elif self.table[index] is None:
                 self.table[index] = (key, value)
+                self.count += 1
             else:
                 print("temp")
 
@@ -36,7 +37,19 @@ class HashTable:
                 return
         print("The key is not in the table")
         return
-
+    
+    def delete(self, delete_key):
+        for item in self.table:
+            if item is not None:
+                key, value = item
+                if delete_key is key:
+                    index = self.calc_hash(delete_key)
+                    self.table[index] = None
+                    self.count -= 1
+                    print("Deleted")
+                    return
+        print("The key is not in the Hash Table")
+        return
 
     def print_all(self):
         for item in self.table:
