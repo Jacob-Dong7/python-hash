@@ -18,10 +18,10 @@ class HashTable:
         self.count = 0
 
         for item in old_table: 
-            if item is not None:
+            if item is not None and item != ("DELETED", "DELETED"):
                 key = item[0]
                 value = item[1]
-                self.insert(key, value)
+                self.direct_insert(key, value)
         return
     
     def direct_insert(self, key, value):
@@ -30,7 +30,7 @@ class HashTable:
 
         while probe < self.size:
             item = self.table[index]
-            if item is None:
+            if item is None or item == ("DELETED", "DELETED"):
                 self.table[index] = (key, value)
                 self.count += 1
                 return
@@ -42,8 +42,6 @@ class HashTable:
                 probe += 1
 
     
-    def indexError(self):
-        print(f"index < 0 or index > {self.size}")
         
     def insert(self, key, value):
         load_factor = self.count / self.size
@@ -54,7 +52,7 @@ class HashTable:
         
         while True:
             item = self.table[index]
-            if item is None:
+            if item is None or item == ("DELETED", "DELETED"):
                 self.table[index] = (key, value)
                 self.count += 1
                 return
@@ -116,7 +114,7 @@ class HashTable:
 
     def print_all(self):
         for item in self.table:
-            if item is not None:
+            if item is not None and item != ("DELETED", "DELETED"):
                 key, value = item
                 print(f"{key} and {value}")
 
